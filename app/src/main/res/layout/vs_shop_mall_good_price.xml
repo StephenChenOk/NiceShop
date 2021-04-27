@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whiteColorF"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_jingdong"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="京东"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_tianmao"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="天猫精选"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_pinduoduo"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="拼多多"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_taobao"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="淘宝"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_xiaomi"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="小米官网"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_suning"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="苏宁易购"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_kaola"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="考拉海购"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_juhuasuan"
+            android:layout_width="85dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shop_mall_text_box_selector"
+            android:gravity="center"
+            android:text="聚划算"
+            android:textColor="@color/shop_mall_text_selector"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="25dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_reset_shop_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/reset_btn_bg"
+            android:text="重置"
+            android:textColor="@color/blackColor3" />
+
+        <Button
+            android:id="@+id/btn_define_shop_mall"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/login_btn"
+            android:text="确定"
+            android:textColor="@color/whiteColorF" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="5dp"/>
+
+</LinearLayout>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 状态栏 -->
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="@dimen/statusBarSpace" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 商品介绍 box -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_back_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_navigate_before_black_32dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_share_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toStartOf="@+id/iv_more_detail"
+                        android:src="@drawable/ic_share_black_24dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_more_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_more_vert_black_24dp" />
+
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="15dp" />
+
+                <ImageView
+                    android:id="@+id/iv_image_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/test_img" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_name_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NIKE 耐克 NIKE 耐克 NIKE 耐克 NIKE 耐克 NIKE 耐克 NIKE 耐克"
+                    android:textColor="@color/blackColor3"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="15dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_color_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="经典配色"
+                        android:textSize="16sp" />
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="1dp" />
+
+                    <TextView
+                        android:id="@+id/tv_style_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="蓝黑脚趾"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_price_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1299元"
+                    android:textColor="@color/RED"
+                    android:textSize="19sp" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_type_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天猫精选"
+                    android:textColor="@color/blackColor4"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_info_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="商品介绍商品介绍商品介绍商品介绍，商品介绍商品介绍商品介绍，商品介绍商品介绍。商品介绍商品介绍商品介绍商品介绍，商品介绍商品介绍商品介绍，商品介绍商品介绍。"
+                    android:textColor="@color/blackColor3"
+                    android:textSize="15sp" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/tv_goto_look"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableRight="@drawable/ic_navigate_next_black_24dp"
+                    android:gravity="center"
+                    android:text="去逛逛看看"
+                    android:textColor="@color/blackColor3"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/wideLine"
+                android:background="@color/lineColor" />
+
+            <!-- 评论 box -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="评论"
+                        android:textColor="@color/blackColor2"
+                        android:textSize="17sp" />
+
+                    <Space
+                        android:layout_width="5dp"
+                        android:layout_height="1dp" />
+
+                    <TextView
+                        android:id="@+id/tv_comment_count_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:textColor="@color/blackColor2"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="10dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_comment_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="5dp" />
+
+                <TextView
+                    android:id="@+id/tv_all_comment_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textColor="@color/blackColor5"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+            <!-- 相关推荐 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="相关推荐"
+                    android:textColor="@color/blackColor2"
+                    android:textSize="17sp" />
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="10dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recommend_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/thinLine"
+        android:background="@color/lineColor" />
+
+    <!-- 底部栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_heat_box_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_whatshot_black_24dp"
+            android:gravity="center"
+            android:text="0" />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/tv_star_box_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_star_border_black_24dp"
+            android:gravity="center"
+            android:text="0" />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/tv_share_box_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_share_black_24dp"
+            android:gravity="center"
+            android:text="0" />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/tv_comment_box_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_comment_black_24dp"
+            android:gravity="center"
+            android:text="0" />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="1dp" />
+
+        <Button
+            android:id="@+id/btn_link_detail"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/login_btn"
+            android:text="直达连接"
+            android:textColor="@color/whiteColorF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

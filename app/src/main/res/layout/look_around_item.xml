@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <ImageView
+            android:id="@+id/iv_image_look_around_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_img" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_content_look_around_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这挺好玩的，就是味道有点重"
+        android:textColor="@color/blackColor3"
+        android:textSize="16sp" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_headIcon_look_around_item"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/test_img" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/tv_name_look_around_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="威威威" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_like_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_favorite_red_20dp"
+            android:drawablePadding="2dp"
+            android:text="0" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="10dp" />
+
+</LinearLayout>

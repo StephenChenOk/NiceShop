@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#eee"
+        android:gravity="center"
+        android:text="评论"
+        android:textColor="#333"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:background="#efefef"
+        android:gravity="top"
+        android:hint="友善是交流的起点"
+        android:minLines="5"
+        android:padding="5dp" />
+
+    <Button
+        android:id="@+id/btn_publish_comment"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:background="@drawable/bg_btn_login"
+        android:textColor="#fff"
+        android:text="发表评论" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="20dp"/>
+</LinearLayout>

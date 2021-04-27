@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.3"
+
+    //**兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        applicationId "com.chen.fy.niceshop"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    // material
+    implementation 'com.google.android.material:material:1.0.0'
+    // circleimageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    // xpopup
+    implementation 'com.lxj:xpopup:1.8.8'
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    // smart refresh
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
+    // bmob
+    implementation 'cn.bmob.android:bmob-sdk:3.7.8'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    // takephoto
+    implementation 'org.devio.takephoto:takephoto_library:4.1.0'
+    // jsoup
+    implementation 'org.jsoup:jsoup:1.11.3'
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 状态栏高度 -->
+    <dimen name="statusBarSpace">27dp</dimen>
+    <!-- 宽分割条 -->
+    <dimen name="wideLine">10dp</dimen>
+    <!-- 中等分割条 -->
+    <dimen name="mediumLine">7dp</dimen>
+    <!-- 细分割条 -->
+    <dimen name="thinLine">1dp</dimen>
+    <dimen name="look_around_width">170dp</dimen>
+    <dimen name="look_around_height1">200dp</dimen>
+    <dimen name="look_around_height2">250dp</dimen>
+    <dimen name="look_around_height3">300dp</dimen>
+</resources>

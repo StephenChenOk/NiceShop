@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/main_logo"/>
+
+    <Button
+        android:id="@+id/btn_login_mine"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/bg_btn_login"
+        android:text="登录"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="7dp"
+        android:textSize="13sp"
+        android:text="登录即可进入新世界"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:textSize="13sp"
+        android:text="登录即同意 '用户协议' 和 '隐私政策' " />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+</LinearLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/lineColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/whiteColorF"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_top"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/top_one_box"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="TOP 1 "
+                android:textColor="@color/whiteColorF"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="15dp" />
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/test_img" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:text="@string/nike"
+                android:textColor="@color/blackColor1"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1299元"
+                android:textColor="@color/RED"
+                android:textSize="19sp" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天猫精选"
+                    android:textColor="@color/blackColor6"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_comment_black_20dp" />
+
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/tv_comment_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="@color/blackColor6"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="25dp"
+                    android:layout_height="1dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_whatshot_black_18dp" />
+
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="1dp" />
+
+                <TextView
+                    android:id="@+id/tv_heat_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="158"
+                    android:textColor="@color/blackColor6"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

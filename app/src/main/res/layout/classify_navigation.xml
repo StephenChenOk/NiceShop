@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 空出状态栏 -->
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="@dimen/statusBarSpace" />
+
+    <!-- 搜索栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_navigate_before_black_32dp" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_bg_selector"
+            android:drawableStart="@drawable/ic_search_24dp"
+            android:gravity="center_vertical"
+            android:text="@string/classify_search_text"
+            android:textColor="@color/blackColor7"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/lineColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- 左边导航栏 -->
+        <RadioGroup
+            android:id="@+id/rg_classify"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_recommend_classify"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="推荐"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_computer"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:checked="true"
+                android:text="电脑数码"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_shoes"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="鞋饰服包"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_food"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="食品生鲜"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_equipment"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="家用电器"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_outdoor_sport"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="户外运动"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_daily_use"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="日用百货"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rb_baby_products"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:text="母婴用品"
+                android:textColor="@drawable/rb_classify_text_color"
+                android:textSize="17sp" />
+
+        </RadioGroup>
+
+        <!-- 右边具体商品View -->
+        <FrameLayout
+            android:id="@+id/fl_classify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

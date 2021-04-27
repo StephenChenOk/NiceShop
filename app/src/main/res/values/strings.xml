@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">NiceShop</string>
+    <!--userInfo_sp_file-->
+    <string name="userInfo_sp_name">userInfo</string>
+    <string name="objectId_sp_key">id</string>
+    <string name="headUrl_sp_key">headUrl</string>
+    <string name="userName_sp_key">userName</string>
+    <string name="account_sp_key">account</string>
+    <string name="password_sp_key">password</string>
+    <string name="phoneNumber_sp_key">phoneNumber</string>
+
+    <string name="head_icon_is_change">isChange</string>
+    <string name="head_icon_path">head_icon_path</string>
+    <string name="msg_key">msg</string>
+
+    <!-- 更换新头像时照片临时存放文件名 -->
+    <string name="headURL_file">headIconUrl.jpg</string>
+    <!-- 发布头条时，拍照后图片的保存地址 -->
+    <string name="headline_file">headline.jpg</string>
+
+    <!-- 新用户默认信息 -->
+    <string name="default_userName">软工新秀</string>
+    <string name="default_phoneNumber">1024</string>
+    <string name="not_login">-1</string>
+    <string name="default_objectId">defaultId</string>
+
+    <!-- 头条、点赞、粉丝数、关注数 -->
+    <string name="headlineNum_sp_key">headline_num</string>
+    <string name="likeNum_sp_key">like_num</string>
+    <string name="fansNum_sp_key">fans_num</string>
+    <string name="attentionNum_sp_key">attention_num</string>
+    <string name="userName_headline">userName</string>
+    <string name="headURL_headline">headURL</string>
+    <string name="video_path">video_path</string>
+
+    <!-- Search -->
+    <string name="search">搜索</string>
+    <string name="history_userID">userID</string>
+
+    <!-- RGUser -->
+    <string name="RGUserID">RGUserID</string>
+    <!-- 当前登录账号的Bmob后端云上的用户ObjectID -->
+    <string name="RGUserObjectID">RGUserObjectID</string>
+    <string name="furniture">家具用品</string>
+    <string name="classify_search_text">笔记本电脑</string>
+
+    <!-- 超值榜单 -->
+    <string name="ranking_list">超值榜单</string>
+    <string name="multiple_list">综合榜</string>
+    <string name="heat_list">热度榜</string>
+    <string name="hot_sell_list">热卖榜</string>
+    <string name="all">全部</string>
+    <string name="_3c">3C数码</string>
+    <string name="nike">NIKE 耐克 AIR JORDAN 1 RETRO HIGH OG 555088 男子运动鞋</string>
+    <string name="massage">聚划算百亿补贴：AUX奥克斯 眼部按摩仪</string>
+
+    <!-- 好价 -->
+    <string name="multiple">综合</string>
+    <string name="newest">最新</string>
+    <string name="three_hour_hot">3小时最热</string>
+    <string name="twelve_hour_hot">12小时最热</string>
+    <string name="one_day_hot">24小时最热</string>
+
+    <!-- user -->
+    <string name="token">token</string>
+    <string name="nickname">nickname</string>
+    <string name="head_icon">head_icon</string>
+    <string name="login_username">username</string>
+    <string name="login_password">password</string>
+    <string name="register_success">注册成功</string>
+    <string name="login_success">登入成功</string>
+    <string name="commodity_id_detail">commodity_id_detail</string>
+    <string name="look_around_item_id">look_around_item_id_key</string>
+    <string name="good_price_commodity_key">good_price_commodity_key</string>
+    <string name="photo_name_1">photo_name_1.jpg</string>
+    <string name="photo_name_2">photo_name_2.jpg</string>
+    <string name="photo_name_3">photo_name_3.jpg</string>
+
+</resources>

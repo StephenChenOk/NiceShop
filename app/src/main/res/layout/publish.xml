@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="@dimen/statusBarSpace"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/back"
+            android:text="发表"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_publish"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_publish"
+            android:text="发表"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/space_view" />
+
+    <EditText
+        android:id="@+id/et_content_publish"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="再小的想法，都值得被记录"
+        android:padding="15dp"
+        android:textSize="17sp" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="10dp" />
+
+
+    <RadioGroup
+        android:id="@+id/rg_publish"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_jiaju"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/publish_text_box_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="家具"
+            android:textColor="@color/publish_text_selector"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_caizhuang"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/publish_text_box_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="彩妆"
+            android:textColor="@color/publish_text_selector"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_chuanda"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/publish_text_box_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="穿搭"
+            android:textColor="@color/publish_text_selector"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp"/>
+
+        <RadioButton
+            android:id="@+id/rb_meishi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/publish_text_box_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="美食"
+            android:textColor="@color/publish_text_selector"
+            android:textSize="15sp" />
+
+    </RadioGroup>
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="10dp" />
+
+    <GridView
+        android:id="@+id/gv_box_public"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3"
+        android:verticalSpacing="3dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:background="#eee" />
+
+    <LinearLayout
+        android:id="@+id/ll_add_pictures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/item_selector"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_image_gray_32dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

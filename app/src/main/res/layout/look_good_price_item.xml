@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_headIcon_look_item"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/test_img" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/tv_name_look_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="威威威"
+                android:textColor="@color/blackColor2"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/iv_image_look_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/test_img" />
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="15dp" />
+
+        <TextView
+            android:id="@+id/tv_content_look_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="整个配色和风格还是比较适合男生的"
+            android:textColor="@color/blackColor3"
+            android:textSize="19sp" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_like_num_look_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_favorite_border_black_20dp"
+                android:drawablePadding="3dp"
+                android:text="5"
+                android:textSize="17sp" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/tv_star_num_look_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_star_border_black_20dp"
+                android:drawablePadding="3dp"
+                android:text="8"
+                android:textSize="17sp" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="1dp" />
+
+            <TextView
+                android:id="@+id/tv_comment_num_look_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_comment_black_20dp"
+                android:drawablePadding="3dp"
+                android:text="11"
+                android:textSize="17sp" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="1dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wideLine"
+        android:background="@color/lineColor" />
+
+</LinearLayout>

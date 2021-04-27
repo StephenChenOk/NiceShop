@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lineColor"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusBarSpace"
+        android:background="@color/whiteColorF" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/whiteColorF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whiteColorF"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/tv_search_good_price"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_bg_selector"
+            android:drawableLeft="@drawable/ic_search_24dp"
+            android:gravity="center_vertical"
+            android:text="电脑"
+            android:textColor="@color/whiteColorA"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="1dp" />
+
+        <ImageView
+            android:id="@+id/iv_classify_good_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_gamepad_red_35dp" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/whiteColorF" />
+
+    <RadioGroup
+        android:id="@+id/rg_good_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whiteColorF"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+        <RadioButton
+            android:id="@+id/rb_classify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+            android:gravity="center_horizontal"
+            android:text="分类"
+            android:textColor="@drawable/rb_classify_text_color"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/rb_shop_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+            android:gravity="center_horizontal"
+            android:text="商城"
+            android:textColor="@drawable/rb_classify_text_color"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/rb_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+            android:gravity="center_horizontal"
+            android:text="价格"
+            android:textColor="@drawable/rb_classify_text_color"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/rb_multiple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+            android:gravity="center_horizontal"
+            android:text="综合"
+            android:textColor="@drawable/rb_classify_text_color"
+            android:textSize="15sp" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="1dp" />
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mediumLine"
+            android:background="@color/whiteColorF" />
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:srlEnableFooterFollowWhenLoadFinished="true"
+            app:srlEnableScrollContentWhenLoaded="true">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlAccentColor="#aaa"
+                app:srlDrawableProgress="@drawable/animation_loading_rotate"
+                app:srlDrawableProgressSize="25dp"
+                app:srlPrimaryColor="@color/colorBackgroundDark" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_good_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line"
+                android:background="@color/whiteColorF" />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlClassicsSpinnerStyle="Translate" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <!-- 蒙层 -->
+        <View
+            android:id="@+id/mantle_good_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mantleColor"
+            android:visibility="gone" />
+
+        <!-- 分类 -->
+        <ViewStub
+            android:id="@+id/vs_classify_good_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/vs_classify_good_price" />
+
+        <!-- 商城 -->
+        <ViewStub
+            android:id="@+id/vs_shop_mall_good_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/vs_shop_mall_good_price" />
+
+        <!-- 价格 -->
+        <ViewStub
+            android:id="@+id/vs_price_good_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/vs_price_good_price" />
+
+        <!-- 综合 -->
+        <ViewStub
+            android:id="@+id/vs_multiple_good_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/vs_multiple_good_price" />
+
+        <TextView
+            android:id="@+id/tv_wu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="100dp"
+            android:text="无"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

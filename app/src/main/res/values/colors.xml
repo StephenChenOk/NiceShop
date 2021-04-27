@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ee3f4d</color>
+    <color name="colorPrimaryDark">#ee3f4d</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_text_normal">#aaaaaa</color>
+    <color name="color_text_selected">#ee3f4d</color>
+    <color name="item_selected">#EEEEEE</color>
+    <color name="colorDivider">#4DAAA9A9</color>
+    <color name="colorBackgroundDark">#f2f2f2</color>
+    <color name="RED">#EE2C2C</color>
+
+    <color name="mainColor">#ee3f4d</color>
+    <color name="ranking_list_box_bg">#D52E2E</color>
+    <color name="text_mine_color">#444</color>
+    <color name="transparent">#00000000</color>
+    <color name="bg_main_bottom_bar_color">#fff</color>
+    <color name="space_view">#efefef</color>
+
+    <color name="lineColor">#efefef</color>
+
+    <color name="blackColor">#000000</color>
+    <color name="blackColor1">#111111</color>
+    <color name="blackColor2">#222222</color>
+    <color name="blackColor3">#333333</color>
+    <color name="blackColor4">#444444</color>
+    <color name="blackColor5">#555555</color>
+    <color name="blackColor6">#666666</color>
+    <color name="blackColor7">#777777</color>
+    <color name="blackColor8">#888888</color>
+    <color name="blackColor9">#999999</color>
+    <color name="blackColorA">#AAAAAA</color>
+
+    <color name="whiteColorF">#FFFFFF</color>
+    <color name="whiteColorEF">#EFEFEF</color>
+    <color name="whiteColorF1">#F5F5F5</color>
+    <color name="whiteColorE">#EEEEEE</color>
+    <color name="whiteColorD">#DDDDDD</color>
+    <color name="whiteColorC">#CCCCCC</color>
+    <color name="whiteColorB">#BBBBBB</color>
+    <color name="whiteColorA">#AAAAAA</color>
+    <color name="yellowColor">#FFC125</color>
+
+    <color name="cabbageZoneColor">#CDBE70</color>
+    <color name="mantleColor">#88000000</color>
+
+    <color name="shop_mall_text_select">#e74241</color>
+    <color name="shop_mall_text_normal">#393939</color>
+    <color name="shop_mall_box">#ffedeb</color>
+
+</resources>

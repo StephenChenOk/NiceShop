@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rg_multiple"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whiteColorF"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <RadioButton
+        android:id="@+id/rb_multiple_good_price"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:button="@null"
+        android:checked="true"
+        android:text="@string/multiple"
+        android:textColor="@drawable/rb_classify_text_color"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/rb_newest_good_price"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:button="@null"
+        android:text="@string/newest"
+        android:textColor="@drawable/rb_classify_text_color"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/rb_three_hour_good_price"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:button="@null"
+        android:text="@string/three_hour_hot"
+        android:textColor="@drawable/rb_classify_text_color"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/rb_twelve_hour_good_price"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:button="@null"
+        android:text="@string/twelve_hour_hot"
+        android:textColor="@drawable/rb_classify_text_color"
+        android:textSize="16sp" />
+
+    <RadioButton
+        android:id="@+id/rb_one_day_good_price"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:button="@null"
+        android:text="@string/one_day_hot"
+        android:textColor="@drawable/rb_classify_text_color"
+        android:textSize="16sp" />
+
+</RadioGroup>
