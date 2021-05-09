@@ -7,6 +7,14 @@ public class Category {
     private int gmt_create;
     private int gmt_modify;
 
+    private int img_id;
+
+    public Category(int id, String name, int img_id) {
+        this.id = id;
+        this.name = name;
+        this.img_id = img_id;
+    }
+
     public int getId() {
         return id;
     }
@@ -47,14 +55,11 @@ public class Category {
         this.gmt_modify = gmt_modify;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", img='" + img + '\'' +
-                ", gmt_create=" + gmt_create +
-                ", gmt_modify=" + gmt_modify +
-                '}';
+    public int getImg_id() {
+        return img_id;
+    }
+
+    public void setImg_id(int img_id) {
+        this.img_id = img_id;
     }
 }

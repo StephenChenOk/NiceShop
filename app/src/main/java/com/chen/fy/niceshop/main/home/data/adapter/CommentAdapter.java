@@ -55,15 +55,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         holder.tvName.setText(comment.getUser_nickname());
         holder.tvContent.setText(comment.getContent());
         holder.tvDate.setText(comment.getDate());
-        if (comment.isLike()) {
-            holder.ivLike.setImageResource(R.drawable.ic_favorite_red_20dp);
-        } else {
-            holder.ivLike.setImageResource(R.drawable.ic_favorite_border_black_20dp);
-        }
-        // click
-        holder.itemView.setOnClickListener(v -> {
-            mListener.clickItem(position);
-        });
     }
 
     @Override
@@ -77,7 +68,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         private TextView tvName;
         private TextView tvContent;
         private TextView tvDate;
-        private ImageView ivLike;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,7 +76,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             tvName = itemView.findViewById(R.id.tv_name);
             tvContent = itemView.findViewById(R.id.tv_content);
             tvDate = itemView.findViewById(R.id.tv_date);
-            ivLike = itemView.findViewById(R.id.iv_like);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.chen.fy.niceshop.main.home.view.activity;
+package com.chen.fy.niceshop.main.home.view.activity.navigation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +24,7 @@ import com.chen.fy.niceshop.main.classify.view.fragment.ShoesFragment;
 /**
  * 分类导航
  */
-public class ClassifyNavigationActivity extends AppCompatActivity implements View.OnClickListener {
+public class TClassifyNavigationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecommendClassifyFragment recommendClassifyFragment;
     private ComputerFragment computerFragment;
@@ -36,7 +36,7 @@ public class ClassifyNavigationActivity extends AppCompatActivity implements Vie
     private BabyProductsFragment babyProductsFragment;
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, ClassifyNavigationActivity.class);
+        Intent intent = new Intent(context, TClassifyNavigationActivity.class);
         context.startActivity(intent);
     }
 

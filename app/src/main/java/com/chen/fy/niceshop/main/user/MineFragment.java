@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chen.fy.niceshop.R;
 import com.chen.fy.niceshop.main.look.publish.PublishActivity;
 import com.chen.fy.niceshop.main.user.collection.CollectionActivity;
+import com.chen.fy.niceshop.main.user.history.HistoryActivity;
 import com.chen.fy.niceshop.main.user.view.LoginActivity;
 import com.chen.fy.niceshop.main.user.view.MyInfoActivity;
 import com.chen.fy.niceshop.utils.RUtil;
@@ -121,6 +122,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         tvUserInfo.setOnClickListener(this);
         mView.findViewById(R.id.ll_star_box).setOnClickListener(v -> {
             CollectionActivity.start(getContext());
+        });
+        mView.findViewById(R.id.ll_history_box).setOnClickListener(v -> {
+            HistoryActivity.start(getContext());
         });
     }
 

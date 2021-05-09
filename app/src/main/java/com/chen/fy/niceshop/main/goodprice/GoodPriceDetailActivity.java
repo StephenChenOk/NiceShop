@@ -128,7 +128,6 @@ public class GoodPriceDetailActivity extends AppCompatActivity {
         // bottom
         tvHeatBox = findViewById(R.id.tv_heat_box_detail);
         tvStarBox = findViewById(R.id.tv_star_box_detail);
-        tvShareBox = findViewById(R.id.tv_share_box_detail);
         tvCommentBox = findViewById(R.id.tv_comment_box_detail);
     }
 
@@ -136,12 +135,6 @@ public class GoodPriceDetailActivity extends AppCompatActivity {
         // 顶部栏
         /// 1返回
         findViewById(R.id.iv_back_detail).setOnClickListener(v -> finish());
-        /// 2分享
-        findViewById(R.id.iv_share_detail).setOnClickListener(v -> {
-        });
-        /// 3更多
-        findViewById(R.id.iv_more_detail).setOnClickListener(v -> {
-        });
 
         // 去逛逛
         findViewById(R.id.tv_goto_look).setOnClickListener(v -> {
@@ -157,11 +150,11 @@ public class GoodPriceDetailActivity extends AppCompatActivity {
         /// 2收藏
         tvStarBox.setOnClickListener(v -> {
         });
-        /// 3分享
-        tvShareBox.setOnClickListener(v -> {
-        });
+//        /// 3分享
+//        tvShareBox.setOnClickListener(v -> {
+//        });
         /// 4评论
-        tvCommentBox.setOnClickListener(this::clickComment);
+//        tvCommentBox.setOnClickListener(this::clickComment);
         /// 5直达连接
         findViewById(R.id.btn_link_detail).setOnClickListener(v -> {
             gotoDetailRrl();

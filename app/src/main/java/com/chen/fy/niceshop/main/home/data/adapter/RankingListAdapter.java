@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.chen.fy.niceshop.R;
+import com.chen.fy.niceshop.main.home.data.model.Commodity;
 import com.chen.fy.niceshop.main.home.data.model.RankingItem;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class RankingListAdapter extends RecyclerView.Adapter<RankingListAdapter.
 
     private Context mContext;
     private int mResourceId;
-    private List<RankingItem> mList;
+    private List<Commodity> mList;
     private IClickListener mListener;
 
     public RankingListAdapter(Context context, int resourceId) {
@@ -28,7 +29,7 @@ public class RankingListAdapter extends RecyclerView.Adapter<RankingListAdapter.
         this.mResourceId = resourceId;
     }
 
-    public void setList(List<RankingItem> list) {
+    public void setList(List<Commodity> list) {
         this.mList = list;
     }
 
@@ -46,21 +47,22 @@ public class RankingListAdapter extends RecyclerView.Adapter<RankingListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        RankingItem rankingItem = mList.get(position);
+        Commodity commodity = mList.get(position);
 
         // set
-        holder.tvTop.setText("TOP  "+rankingItem.getTop());
-        if (rankingItem.getTop() == 1){
+        int index = position+1;
+        if (index == 1) {
             holder.tvTop.setBackgroundResource(R.drawable.top_one_box);
-        }else{
+        } else {
             holder.tvTop.setBackgroundResource(R.drawable.top_two_box);
         }
-        Glide.with(mContext).load(rankingItem.getImgPath()).into(holder.ivImage);
-        holder.tvName.setText(rankingItem.getName());
-        holder.tvPrice.setText(rankingItem.getPrice());
-        holder.tvType.setText(rankingItem.getType());
-        holder.tvCommentNum.setText(String.valueOf(rankingItem.getCommentNum()));
-        holder.tvHeatNum.setText(String.valueOf(rankingItem.getHeatNum()));
+        holder.tvTop.setText("TOP  " + index);
+        Glide.with(mContext).load("http://" + commodity.getPic_url()).into(holder.ivImage);
+        holder.tvName.setText(commodity.getTitle());
+        holder.tvPrice.setText(String.valueOf(commodity.getView_price()));
+        holder.tvType.setText(commodity.getPlatform());
+        holder.tvCommentNum.setText(String.valueOf(commodity.getComment_num()));
+        holder.tvHeatNum.setText(String.valueOf(commodity.getHot()));
 
         // click
         holder.itemView.setOnClickListener(v -> {

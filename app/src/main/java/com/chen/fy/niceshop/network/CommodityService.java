@@ -24,6 +24,10 @@ public interface CommodityService {
     @GET("Commodities/hotCommodity")
     Call<BaseCommodityResponse> getHotCommodity();
 
+    ///  超值榜单数据
+    @GET("Commodities/rank")
+    Call<BaseCommodityResponse> getRankCommodity();
+
     ///  商品详情
     @GET("Commodities/commodityDetail")
     Call<BaseDetailResponse> getCommodityDetail(@Query("id") int id);

@@ -18,7 +18,7 @@ import com.chen.fy.niceshop.main.home.data.model.Commodity;
 import com.chen.fy.niceshop.network.CommodityService;
 import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
+import com.chen.fy.niceshop.main.home.detail.CommodityDetailActivity;
 import com.chen.fy.niceshop.main.look.view.activity.LookGoodPriceActivity;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;

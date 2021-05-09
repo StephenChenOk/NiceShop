@@ -123,6 +123,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (base != null) {
                     if (base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
                         parseResponse(base);
+                    } else {
+                        Toast.makeText(LoginActivity.this, base.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.e(TAG, "response body is null");
@@ -131,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(@NonNull Call<BaseAccountResponse> call, @NonNull Throwable t) {
-                Log.e(TAG, "login failure");
+                t.printStackTrace();
             }
         });
     }

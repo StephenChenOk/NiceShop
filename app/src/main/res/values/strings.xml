@@ -75,5 +75,9 @@
     <string name="photo_name_1">photo_name_1.jpg</string>
     <string name="photo_name_2">photo_name_2.jpg</string>
     <string name="photo_name_3">photo_name_3.jpg</string>
+    <string name="history_sp_name">history_sp_name</string>
+    <string name="shareTo">分享到...</string>
+    <string name="score">请进行评分</string>
+    <string name="title">title</string>
 
 </resources>

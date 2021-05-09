@@ -1,9 +1,6 @@
 package com.chen.fy.niceshop.main.goodprice;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +33,7 @@ import com.chen.fy.niceshop.main.goodprice.search.GoodPriceSearchActivity;
 import com.chen.fy.niceshop.main.classify.data.ClassifyAdapter;
 import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
 import com.chen.fy.niceshop.main.home.data.model.Commodity;
+import com.chen.fy.niceshop.main.home.view.activity.navigation.ClassifyNavigationActivity;
 import com.chen.fy.niceshop.main.home.view.fragment.RecommendFragment;
 import com.chen.fy.niceshop.network.CategoryService;
 import com.chen.fy.niceshop.network.CommodityService;
@@ -43,7 +41,6 @@ import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.network.reptile.GetReptileData;
 import com.chen.fy.niceshop.network.reptile.GoodPriceCommodity;
 import com.chen.fy.niceshop.utils.RUtil;
-import com.chen.fy.niceshop.main.home.view.activity.ClassifyNavigationActivity;
 import com.chen.fy.niceshop.utils.ShowUtils;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
@@ -294,9 +291,9 @@ public class GoodPriceFragment extends Fragment {
     private void initClassifyData() {
         mClassifyAdapter = new ClassifyAdapter(getContext(), R.layout.classify_item);
         // TODO: 2021/3/30 分类item点击
-        mClassifyAdapter.setListener(position -> {
+        mClassifyAdapter.setListener(name -> {
             loading.show();
-            clickClassify(mClassifyLists.get(position).getName());
+            clickClassify(name);
         });
         fillClassifyList();
     }

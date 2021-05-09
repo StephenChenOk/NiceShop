@@ -73,29 +73,6 @@
                     android:textColor="@color/blackColor6"
                     android:textSize="15sp" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/tv_heat_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="赞"
-                    android:textColor="@color/blackColor6"
-                    android:textSize="15sp" />
-
-                <Space
-                    android:layout_width="2dp"
-                    android:layout_height="1dp" />
-
-                <ImageView
-                    android:id="@+id/iv_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_favorite_border_black_20dp" />
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

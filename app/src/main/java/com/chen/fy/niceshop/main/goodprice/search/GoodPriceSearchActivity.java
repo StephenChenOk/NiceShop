@@ -25,7 +25,6 @@ import com.chen.fy.niceshop.main.goodprice.GoodPriceDetailActivity;
 import com.chen.fy.niceshop.main.goodprice.data.model.GoodPriceAdapter;
 import com.chen.fy.niceshop.main.goodprice.network.ReptileSearchService;
 import com.chen.fy.niceshop.main.goodprice.network.SearchServiceCreator;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
 import com.chen.fy.niceshop.main.search.data.HistoryAdapter;
 import com.chen.fy.niceshop.main.search.data.model.History;
 import com.chen.fy.niceshop.network.reptile.GetReptileData;

@@ -56,7 +56,7 @@ public class GetReptileData {
                     .select("span[class=feed-block-extras]")
                     .text();
             String[] ps = platform_.split(" ");
-            String platform = ps[1];
+            String platform = ps[ps.length - 1];
 
             GoodPriceCommodity commodity =
                     new GoodPriceCommodity(title, pic_url, price, content, url, platform);

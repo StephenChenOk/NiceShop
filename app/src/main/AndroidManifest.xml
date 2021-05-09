@@ -41,7 +41,7 @@
             android:name=".main.user.view.RegisterActivity"
             android:theme="@style/MyTheme" />
         <activity
-            android:name=".main.home.CommodityDetailActivity"
+            android:name=".main.home.detail.CommodityDetailActivity"
             android:theme="@style/MyTheme" />
         <activity
             android:name=".main.look.view.activity.LookDetailActivity"
@@ -59,7 +59,7 @@
             android:name=".main.home.view.activity.CabbageZoneActivity"
             android:theme="@style/MyTheme" />
         <activity
-            android:name=".main.home.view.activity.ClassifyNavigationActivity"
+            android:name=".main.home.view.activity.navigation.ClassifyNavigationActivity"
             android:theme="@style/MyTheme" />
         <activity
             android:name=".main.search.SearchActivity"
@@ -87,6 +87,12 @@
             android:theme="@style/MyTheme" />
         <activity
             android:name=".main.goodprice.search.GoodPriceSearchActivity"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".main.user.history.HistoryActivity"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".main.home.view.activity.navigation.NavigationListActivity"
             android:theme="@style/MyTheme" />
 
         <provider

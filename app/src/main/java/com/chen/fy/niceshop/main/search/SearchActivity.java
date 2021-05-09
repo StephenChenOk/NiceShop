@@ -10,7 +10,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,11 +20,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chen.fy.niceshop.R;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
+import com.chen.fy.niceshop.main.home.detail.CommodityDetailActivity;
 import com.chen.fy.niceshop.main.home.data.adapter.CommodityAdapter;
 import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
 import com.chen.fy.niceshop.main.home.data.model.Commodity;
-import com.chen.fy.niceshop.main.home.view.fragment.RecommendFragment;
 import com.chen.fy.niceshop.main.search.data.HistoryAdapter;
 import com.chen.fy.niceshop.main.search.data.model.History;
 import com.chen.fy.niceshop.network.CommodityService;

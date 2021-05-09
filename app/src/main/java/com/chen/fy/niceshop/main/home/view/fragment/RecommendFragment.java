@@ -20,11 +20,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.chen.fy.niceshop.R;
 import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
 import com.chen.fy.niceshop.main.home.data.model.Commodity;
+import com.chen.fy.niceshop.main.home.view.activity.navigation.ClassifyNavigationActivity;
 import com.chen.fy.niceshop.network.CommodityService;
 import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.main.home.view.activity.CabbageZoneActivity;
-import com.chen.fy.niceshop.main.home.view.activity.ClassifyNavigationActivity;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
+import com.chen.fy.niceshop.main.home.detail.CommodityDetailActivity;
 import com.chen.fy.niceshop.main.home.data.adapter.CommodityAdapter;
 import com.chen.fy.niceshop.main.home.data.adapter.viewpager.BannerPagerAdapter;
 import com.chen.fy.niceshop.utils.RUtil;
@@ -253,6 +253,11 @@ public class RecommendFragment extends Fragment implements ViewPager.OnPageChang
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
+        if( state == ViewPager.SCROLL_STATE_DRAGGING){   //拖拽状态
+        }else if(state == ViewPager.SCROLL_STATE_SETTLING){  //滑动状态
+        }else if(state== ViewPager.SCROLL_STATE_IDLE){   //静止状态
+            mHandler.removeCallbacksAndMessages(null);   //清除消息
+            mHandler.sendEmptyMessageDelayed(0,3000);
+        }
     }
 }

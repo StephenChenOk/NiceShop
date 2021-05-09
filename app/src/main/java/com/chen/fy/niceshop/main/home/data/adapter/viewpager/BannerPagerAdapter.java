@@ -64,7 +64,6 @@ public class BannerPagerAdapter extends PagerAdapter {
 
     /**
      * 初始化页面
-     *
      * @param container viewPager自身
      * @param position  当前实例化页面位置
      * @return 返回初始化好的页面

@@ -62,7 +62,7 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.ViewHo
 
         // click
         holder.itemView.setOnClickListener(v -> {
-            mListener.clickItem(position);
+            mListener.clickItem(category.getName());
         });
     }
 
@@ -85,6 +85,6 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.ViewHo
     }
 
     public interface IClickItemListener {
-        void clickItem(int position);
+        void clickItem(String title);
     }
 }

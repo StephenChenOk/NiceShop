@@ -3,7 +3,6 @@ package com.chen.fy.niceshop.main.user.collection;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,13 +11,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chen.fy.niceshop.R;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
+import com.chen.fy.niceshop.main.home.detail.CommodityDetailActivity;
 import com.chen.fy.niceshop.main.home.data.adapter.CommodityAdapter;
-import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
 import com.chen.fy.niceshop.main.home.data.model.Commodity;
 import com.chen.fy.niceshop.network.CollectionService;
 import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
+import com.chen.fy.niceshop.utils.UserSP;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.core.BasePopupView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class CollectionActivity extends AppCompatActivity {
 
     private CommodityAdapter mAdapter;
 
-    private List<Commodity> mList;
+    private List<Commodity> mList = new ArrayList<>();
 
     public static void start(Context context) {
         Intent intent = new Intent(context, CollectionActivity.class);
@@ -68,23 +69,28 @@ public class CollectionActivity extends AppCompatActivity {
     }
 
     private void fillData() {
+        BasePopupView loading = new XPopup.Builder(this).asLoading("加载中").show();
+        // token
+        String token = UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
         CollectionService service = ServiceCreator.create(CollectionService.class);
-        service.getCollectionList().enqueue(new Callback<BaseCommodityResponse>() {
+        service.getCollectionList(token).enqueue(new Callback<BaseCollectionListResponse>() {
             @Override
-            public void onResponse(@NonNull Call<BaseCommodityResponse> call
-                    , @NonNull Response<BaseCommodityResponse> response) {
-                BaseCommodityResponse base = response.body();
+            public void onResponse(@NonNull Call<BaseCollectionListResponse> call
+                    , @NonNull Response<BaseCollectionListResponse> response) {
+                loading.dismiss();
+                BaseCollectionListResponse base = response.body();
                 if (base != null && base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
-                    mList = base.getCommodity();
+                    mList = base.getList();
                     mAdapter.setData(mList);
                     recyclerView.setAdapter(mAdapter);
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<BaseCommodityResponse> call
+            public void onFailure(@NonNull Call<BaseCollectionListResponse> call
                     , @NonNull Throwable t) {
-                Log.i("GetAllShareInfo", "GetAllShareInfo Failure");
+                loading.dismiss();
+                t.printStackTrace();
             }
         });
     }

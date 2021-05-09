@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,12 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chen.fy.niceshop.R;
 import com.chen.fy.niceshop.main.home.data.adapter.RankingListAdapter;
+import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
+import com.chen.fy.niceshop.main.home.data.model.Commodity;
 import com.chen.fy.niceshop.main.home.data.model.RankingItem;
+import com.chen.fy.niceshop.network.CommodityService;
+import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
 import com.chen.fy.niceshop.utils.ShowUtils;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
+import com.chen.fy.niceshop.main.home.detail.CommodityDetailActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * 超值榜单
@@ -25,7 +35,9 @@ public class RankingListActivity extends AppCompatActivity {
 
     private RecyclerView rvRanking;
 
-    private ArrayList<RankingItem> mList;
+    private RankingListAdapter mAdapter;
+
+    private List<Commodity> mList;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, RankingListActivity.class);
@@ -54,39 +66,34 @@ public class RankingListActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        RankingListAdapter adapter = new RankingListAdapter(this, R.layout.ranking_list_item);
-        fillListData();
-        adapter.setList(mList);
-        adapter.setListener(id -> {
+        mAdapter = new RankingListAdapter(this, R.layout.ranking_list_item);
+        mAdapter.setListener(id -> {
             CommodityDetailActivity.start(this, id);
         });
-        rvRanking.setAdapter(adapter);
+        fillListData();
     }
 
     private void fillListData() {
         mList = new ArrayList<>();
 
-        RankingItem item1 = new RankingItem();
-        item1.setId(1);
-        item1.setTop(1);
-        item1.setName(RUtil.toString(R.string.nike));
-        item1.setImgPath(R.drawable.test_img);
-        item1.setPrice(1999);
-        item1.setType("天猫精选");
-        item1.setCommentNum(5);
-        item1.setHeatNum(158);
+        CommodityService service = ServiceCreator.create(CommodityService.class);
+        service.getRankCommodity().enqueue(new Callback<BaseCommodityResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BaseCommodityResponse> call
+                    , @NonNull Response<BaseCommodityResponse> response) {
+                BaseCommodityResponse base = response.body();
+                if (base != null && base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
+                    mList = base.getCommodity();
+                    mAdapter.setList(mList);
+                    rvRanking.setAdapter(mAdapter);
+                }
+            }
 
-        RankingItem item2 = new RankingItem();
-        item2.setId(2);
-        item2.setTop(2);
-        item2.setName(RUtil.toString(R.string.massage));
-        item2.setImgPath(R.drawable.test_img);
-        item2.setPrice(49);
-        item2.setType("天猫精选");
-        item2.setCommentNum(5);
-        item2.setHeatNum(158);
-
-        mList.add(item1);
-        mList.add(item2);
+            @Override
+            public void onFailure(@NonNull Call<BaseCommodityResponse> call
+                    , @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

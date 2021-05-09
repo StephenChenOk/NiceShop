@@ -71,11 +71,28 @@ public class LookAroundAdapter extends RecyclerView.Adapter<LookAroundAdapter.Vi
         Glide.with(mContext)
                 .load(ServiceCreator.ROOT_URL + dynamic.getUser_img()).into(holder.civHeadIcon);
         holder.tvName.setText(dynamic.getUser_nickname());
-        holder.tvLikeNum.setText(String.valueOf(dynamic.getGive_num()));
 
+        int giveNum = dynamic.getGive_num();
+        holder.tvGiveNum.setText(String.valueOf(giveNum));
+        if(giveNum == 0) {
+            holder.ivGive.setImageResource(R.drawable.ic_favorite_border_black_20dp);
+        }else {
+            holder.ivGive.setImageResource(R.drawable.ic_favorite_red_20dp);
+        }
+
+        int dynamicID = dynamic.getId();
         // click
         holder.itemView.setOnClickListener(v -> {
-            mListener.clickItem(dynamic.getId());
+            mListener.clickItem(dynamicID);
+        });
+
+        // 点赞
+        holder.ivGive.setOnClickListener(v->{
+            if(giveNum == 0) {
+                mListener.doGive(dynamicID);
+            }else{
+                mListener.cancelGive(dynamicID);
+            }
         });
     }
 
@@ -106,7 +123,8 @@ public class LookAroundAdapter extends RecyclerView.Adapter<LookAroundAdapter.Vi
         private TextView tvContent;
         private CircleImageView civHeadIcon;
         private TextView tvName;
-        private TextView tvLikeNum;
+        private ImageView ivGive;
+        private TextView tvGiveNum;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,11 +133,14 @@ public class LookAroundAdapter extends RecyclerView.Adapter<LookAroundAdapter.Vi
             tvContent = itemView.findViewById(R.id.tv_content_look_around_item);
             civHeadIcon = itemView.findViewById(R.id.civ_headIcon_look_around_item);
             tvName = itemView.findViewById(R.id.tv_name_look_around_item);
-            tvLikeNum = itemView.findViewById(R.id.tv_like_num);
+            ivGive = itemView.findViewById(R.id.iv_give);
+            tvGiveNum = itemView.findViewById(R.id.tv_give_num);
         }
     }
 
     public interface IClickItemListener {
         void clickItem(int id);
+        void doGive(int id);
+        void cancelGive(int id);
     }
 }

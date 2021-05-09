@@ -12,15 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chen.fy.niceshop.R;
-import com.chen.fy.niceshop.main.home.CommodityDetailActivity;
+import com.chen.fy.niceshop.main.home.detail.CommodityDetailActivity;
 import com.chen.fy.niceshop.main.home.data.adapter.CommentAdapter;
-import com.chen.fy.niceshop.main.home.data.adapter.CommodityAdapter;
-import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
 import com.chen.fy.niceshop.main.home.data.model.Comment;
-import com.chen.fy.niceshop.main.home.data.model.Commodity;
-import com.chen.fy.niceshop.main.home.view.activity.HotTodayActivity;
 import com.chen.fy.niceshop.network.CommentService;
-import com.chen.fy.niceshop.network.CommodityService;
 import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
 
