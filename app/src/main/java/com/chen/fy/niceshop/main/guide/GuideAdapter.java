@@ -1,4 +1,4 @@
-package com.chen.fy.niceshop.main.home.view.activity.navigation;
+package com.chen.fy.niceshop.main.guide;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import com.bumptech.glide.Glide;
 import com.chen.fy.niceshop.R;
 import com.chen.fy.niceshop.main.goodprice.data.model.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
-public class NavigationAdapter extends RecyclerView.Adapter<NavigationAdapter.ViewHolder> {
+public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> {
 
     private Context mContext;
     private int mResourceId;
     private List<Category> mList;
     private IClickItemListener mListener;
 
-    public NavigationAdapter(Context context, int resourceId) {
+    public GuideAdapter(Context context, int resourceId) {
         this.mContext = context;
         this.mResourceId = resourceId;
     }
@@ -52,12 +52,18 @@ public class NavigationAdapter extends RecyclerView.Adapter<NavigationAdapter.Vi
         String path_base = category.getImg();
 
         String path = "http://39.106.225.65" + path_base;
-
         Glide.with(mContext).load(path).into(holder.ivImage);
+
         holder.tvName.setText(category.getName());
 
         // click
         holder.itemView.setOnClickListener(v -> {
+            // 根据点击状态改变颜色
+            if (v.isSelected()) {
+                v.setSelected(false);
+            } else {
+                v.setSelected(true);
+            }
             mListener.clickItem(category.getName());
         });
     }

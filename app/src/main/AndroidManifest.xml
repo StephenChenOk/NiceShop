@@ -68,9 +68,6 @@
             android:name=".main.user.view.ModifyUsernameActivity"
             android:theme="@style/MyTheme" />
         <activity
-            android:name=".main.user.view.ModifyPhoneNumberActivity"
-            android:theme="@style/MyTheme" />
-        <activity
             android:name=".main.user.view.MyInfoActivity"
             android:theme="@style/MyTheme" />
         <activity
@@ -93,6 +90,15 @@
             android:theme="@style/MyTheme" />
         <activity
             android:name=".main.home.view.activity.navigation.NavigationListActivity"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".main.guide.GuideActivity"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".main.dynamic.DynamicActivity"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".main.dynamic.GiveActivity"
             android:theme="@style/MyTheme" />
 
         <provider

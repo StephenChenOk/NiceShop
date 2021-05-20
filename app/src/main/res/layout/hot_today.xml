@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="今日爆款"
+            android:text="今日推荐"
             android:textColor="@color/whiteColorF"
             android:textSize="20sp" />
 

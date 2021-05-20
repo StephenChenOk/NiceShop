@@ -8,7 +8,7 @@ public class Commodity {
     private int id;
     private String pic_url;
     private String title;
-    private int view_price;
+    private double view_price;
     private String platform;
     private int comment_num;
     private int hot;
@@ -39,11 +39,11 @@ public class Commodity {
         this.title = title;
     }
 
-    public int getView_price() {
+    public double getView_price() {
         return view_price;
     }
 
-    public void setView_price(int view_price) {
+    public void setView_price(double view_price) {
         this.view_price = view_price;
     }
 

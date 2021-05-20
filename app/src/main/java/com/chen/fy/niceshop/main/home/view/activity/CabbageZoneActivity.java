@@ -89,7 +89,7 @@ public class CabbageZoneActivity extends AppCompatActivity {
 
             @Override
             public void gotoLookAround(int position) {
-                LookGoodPriceActivity.start(CabbageZoneActivity.this,-1);
+                CommodityDetailActivity.start(CabbageZoneActivity.this, position);
             }
         });
         fillData();

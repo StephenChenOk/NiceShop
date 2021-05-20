@@ -1,32 +1,30 @@
-package com.chen.fy.niceshop.main.look.view.fragment;
+package com.chen.fy.niceshop.main.dynamic;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.chen.fy.niceshop.R;
 import com.chen.fy.niceshop.XWApplication;
+import com.chen.fy.niceshop.main.look.data.adapter.LookAroundAdapter;
 import com.chen.fy.niceshop.main.look.data.model.dynamic.BaseDynamicResponse;
 import com.chen.fy.niceshop.main.look.data.model.dynamic.Dynamic;
 import com.chen.fy.niceshop.main.look.view.activity.LookDetailActivity;
-import com.chen.fy.niceshop.main.look.data.adapter.LookAroundAdapter;
-import com.chen.fy.niceshop.main.look.data.model.LookAroundItem;
 import com.chen.fy.niceshop.main.user.collection.BaseCollectionResponse;
 import com.chen.fy.niceshop.network.DynamicService;
 import com.chen.fy.niceshop.network.GiveService;
+import com.chen.fy.niceshop.network.PersonService;
 import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
-import com.chen.fy.niceshop.utils.ShowUtils;
 import com.chen.fy.niceshop.utils.UserSP;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -39,9 +37,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LookAroundItemFragment extends Fragment {
+public class GiveActivity extends AppCompatActivity {
 
-    private View mView;
 
     private RecyclerView mRecyclerView;
 
@@ -49,47 +46,38 @@ public class LookAroundItemFragment extends Fragment {
 
     private List<Dynamic> mDataList = new ArrayList<>();
 
-    private String mType = null;
+    private TextView tvNo;
 
-    // 刷新
-    private SmartRefreshLayout mRefreshLayout;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.look_around_item_fragment, container, false);
-        return mView;
+    public static void start(Context context) {
+        Intent intent = new Intent(context, GiveActivity.class);
+        context.startActivity(intent);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.give_layout);
+
         bindView();
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
         initData();
     }
 
     private void bindView() {
-        mRefreshLayout = mView.findViewById(R.id.refreshLayout);
-        mRecyclerView = mView.findViewById(R.id.rv_look_around_item);
+        mRecyclerView = findViewById(R.id.rv_dynamic);
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2
                 , StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(manager);
+
+        tvNo = findViewById(R.id.tv_no);
     }
 
     private void initData() {
-        mAdapter = new LookAroundAdapter(getContext(), R.layout.look_around_item);
+        mAdapter = new LookAroundAdapter(this, R.layout.look_around_item);
         mAdapter.setDataList(mDataList);
         mAdapter.setListener(new LookAroundAdapter.IClickItemListener() {
             @Override
             public void clickItem(int id) {
-                LookDetailActivity.start(getContext(), id);
+                LookDetailActivity.start(GiveActivity.this, id);
             }
 
             @Override
@@ -104,40 +92,40 @@ public class LookAroundItemFragment extends Fragment {
         });
         mRecyclerView.setAdapter(mAdapter);
 
-        // 顶部下拉刷新
-        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            fillData(mType);
-        });
-
+        fillData();
     }
 
-    public void fillData(String type) {
-        mType = type;
-        DynamicService service = ServiceCreator.create(DynamicService.class);
-        service.getDynamic(type).enqueue(new Callback<BaseDynamicResponse>() {
+    public void fillData() {
+        String token = UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
+
+        PersonService service = ServiceCreator.create(PersonService.class);
+        service.giveList(token).enqueue(new Callback<BaseGiveResponse>() {
             @Override
-            public void onResponse(@NonNull Call<BaseDynamicResponse> call
-                    , @NonNull Response<BaseDynamicResponse> response) {
-                BaseDynamicResponse base = response.body();
-                if (base != null && base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
-                    mDataList = base.getDynamics();
-                    mAdapter.setDataList(mDataList);
-                    mAdapter.notifyDataSetChanged();
-                    mRefreshLayout.finishRefresh();
+            public void onResponse(@NonNull Call<BaseGiveResponse> call
+                    , @NonNull Response<BaseGiveResponse> response) {
+                BaseGiveResponse base = response.body();
+                if (base != null) {
+                    if(base.getCode() == RUtil.toInt(R.integer.server_success)) {
+                        mDataList = base.getGiveList();
+                        mAdapter.setDataList(mDataList);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                    if(base.getCode() == RUtil.toInt(R.integer.server_error)) {
+                        tvNo.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<BaseDynamicResponse> call
+            public void onFailure(@NonNull Call<BaseGiveResponse> call
                     , @NonNull Throwable t) {
                 t.printStackTrace();
-                mRefreshLayout.finishRefresh();
             }
         });
     }
 
     /// 点赞动态
-    private void giveDynamic(int dynamicID){
+    private void giveDynamic(int dynamicID) {
         // token
         String token = UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
         RequestBody idBody = RequestBody.create(
@@ -166,7 +154,7 @@ public class LookAroundItemFragment extends Fragment {
     }
 
     /// 取消点赞动态
-    private void cancelGiveDynamic(int dynamicID){
+    private void cancelGiveDynamic(int dynamicID) {
         // token
         String token = UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
         RequestBody idBody = RequestBody.create(

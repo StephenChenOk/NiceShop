@@ -129,6 +129,12 @@ public class CommodityDetailActivity extends AppCompatActivity {
         initData();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+    }
+
     private void bindView() {
         // 商品栏
         ivImage = findViewById(R.id.iv_image_detail);

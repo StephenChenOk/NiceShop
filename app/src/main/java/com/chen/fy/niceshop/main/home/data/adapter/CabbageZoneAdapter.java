@@ -61,7 +61,7 @@ public class CabbageZoneAdapter extends RecyclerView.Adapter<CabbageZoneAdapter.
         });
         // 去逛逛
         holder.llGoLookBox.setOnClickListener(v -> {
-            mListener.gotoLookAround(position);
+            mListener.gotoLookAround(commodity.getId());
         });
     }
 

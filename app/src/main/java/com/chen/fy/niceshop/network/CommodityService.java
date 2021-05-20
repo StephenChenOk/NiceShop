@@ -1,10 +1,12 @@
 package com.chen.fy.niceshop.network;
 
 import com.chen.fy.niceshop.main.home.data.model.BaseCommodityResponse;
+import com.chen.fy.niceshop.main.home.data.model.BaseRecommendResponse;
 import com.chen.fy.niceshop.main.home.data.model.detail.BaseDetailResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 /**
@@ -20,9 +22,13 @@ public interface CommodityService {
     @GET("Commodities/cheapest")
     Call<BaseCommodityResponse> getCheapest();
 
+    ///  今日推荐数据
+    @GET("recommends/recommendItems")
+    Call<BaseRecommendResponse> recommendItems(@Header("Authorization") String token);
+
     ///  今日爆款数据
     @GET("Commodities/hotCommodity")
-    Call<BaseCommodityResponse> getHotCommodity();
+    Call<BaseRecommendResponse> g();
 
     ///  超值榜单数据
     @GET("Commodities/rank")
@@ -47,4 +53,8 @@ public interface CommodityService {
     ///  实时爬虫抓取数据
     @GET("Commodities/allCommodity")
     Call<BaseCommodityResponse> dynamicReptile(@Query("category") String keyword);
+
+    ///  分类商品
+    @GET("Commodities/categoryCommodity")
+    Call<BaseCommodityResponse> categoryCommodity(@Query("category") String keyword);
 }

@@ -33,9 +33,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_navigation"
+        android:background="#FFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/whiteColorEF"
         android:padding="10dp" />
 
 </LinearLayout>

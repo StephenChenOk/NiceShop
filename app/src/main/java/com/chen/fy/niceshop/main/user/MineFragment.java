@@ -17,11 +17,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import com.chen.fy.niceshop.R;
+import com.chen.fy.niceshop.main.dynamic.BaseGiveResponse;
+import com.chen.fy.niceshop.main.dynamic.DynamicActivity;
+import com.chen.fy.niceshop.main.dynamic.GiveActivity;
 import com.chen.fy.niceshop.main.look.publish.PublishActivity;
 import com.chen.fy.niceshop.main.user.collection.CollectionActivity;
+import com.chen.fy.niceshop.main.user.data.model.BaseUserInfoResponse;
+import com.chen.fy.niceshop.main.user.data.model.UserInfo;
 import com.chen.fy.niceshop.main.user.history.HistoryActivity;
 import com.chen.fy.niceshop.main.user.view.LoginActivity;
 import com.chen.fy.niceshop.main.user.view.MyInfoActivity;
+import com.chen.fy.niceshop.network.PersonService;
+import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
 import com.chen.fy.niceshop.utils.ShowUtils;
 import com.chen.fy.niceshop.utils.UserSP;
@@ -30,6 +37,9 @@ import com.lxj.xpopup.XPopup;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MineFragment extends Fragment implements View.OnClickListener {
 
@@ -45,7 +55,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView tvUsername;
     private TextView tvUserInfo;
 
-    private TextView tvHeadlineNum;
+    private TextView tvDynamicNum;
     private TextView tvLikeNum;
     private TextView tvFansNum;
     private TextView tvAttentionNum;
@@ -112,7 +122,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         tvUsername = mView.findViewById(R.id.tv_username_mine);
         tvUserInfo = mView.findViewById(R.id.tv_personal_home);
 
-        tvHeadlineNum = mView.findViewById(R.id.tv_headline_num);
+        tvDynamicNum = mView.findViewById(R.id.tv_dynamic_num);
         tvLikeNum = mView.findViewById(R.id.tv_like_num);
         tvFansNum = mView.findViewById(R.id.tv_fans_num);
         tvAttentionNum = mView.findViewById(R.id.tv_attention_num);
@@ -125,6 +135,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         });
         mView.findViewById(R.id.ll_history_box).setOnClickListener(v -> {
             HistoryActivity.start(getContext());
+        });
+        // 动态
+        mView.findViewById(R.id.ll_dynamic_box).setOnClickListener(v -> {
+            DynamicActivity.start(getContext());
+        });
+        // 获赞
+        mView.findViewById(R.id.ll_give_box).setOnClickListener(v -> {
+            GiveActivity.start(getContext());
         });
     }
 
@@ -163,54 +181,53 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     /// 填充数据到已登录界面
     private void fillLoggedInView() {
         SharedPreferences sp = UserSP.getUserSP();
-        String userName = sp.getString(RUtil.toString(R.string.userName_sp_key),
+        String userName = sp.getString(RUtil.toString(R.string.nickname),
                 RUtil.toString(R.string.default_userName));
-
-        int headlineNum = getHeadlineNum(sp);
-        int likeNum = getLikeNum();
-        int fansNum = getFansNum();
-        int attentionNum = getAttentionNum();
 
         tvUsername.setText(userName);
         tvUserInfo.setText("个人主页>");
-        tvHeadlineNum.setText(String.valueOf(headlineNum));
-        tvLikeNum.setText(String.valueOf(likeNum));
-        tvFansNum.setText(String.valueOf(fansNum));
-        tvAttentionNum.setText(String.valueOf(attentionNum));
 
         setHeadIcon();
+        getUserInfo();
     }
 
-    private int getHeadlineNum(SharedPreferences sp) {
-        return 5;
+    private void getUserInfo(){
+        String token = UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
+
+        PersonService service = ServiceCreator.create(PersonService.class);
+        service.userInfo(token).enqueue(new Callback<BaseUserInfoResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BaseUserInfoResponse> call
+                    , @NonNull Response<BaseUserInfoResponse> response) {
+                BaseUserInfoResponse base = response.body();
+                if (base != null) {
+                    if(base.getStatus() == RUtil.toInt(R.integer.server_success)) {
+                        UserInfo userInfo = base.getUserInfo();
+                        setUserInfo(userInfo);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BaseUserInfoResponse> call
+                    , @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
-    private int getLikeNum() {
-        return 3;
-    }
-
-    private int getFansNum() {
-        return 1;
-    }
-
-    private int getAttentionNum() {
-        return 2;
+    private void setUserInfo(UserInfo userInfo){
+        tvDynamicNum.setText(String.valueOf(userInfo.getComment_num()));
+        tvLikeNum.setText(String.valueOf(userInfo.getGive_num()));
+        tvFansNum.setText(String.valueOf(userInfo.getFans_num()));
+        tvAttentionNum.setText(String.valueOf(userInfo.getFollow_num()));
     }
 
     private void setHeadIcon() {
         SharedPreferences preferences = UserSP.getUserSP();
-        String headUrl = preferences.getString(RUtil.toString(R.string.headUrl_sp_key), "");
+        String headUrl = preferences.getString(RUtil.toString(R.string.head_icon), "");
 
-        if (!headUrl.equals("")) {
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.not_logged_head_icon)//图片加载出来前，显示的图片
-                    .fallback(R.drawable.not_logged_head_icon)  //url为空的时候,显示的图片
-                    .error(R.drawable.not_logged_head_icon);    //图片加载失败后，显示的图片
-
-            Glide.with(Objects.requireNonNull(getActivity())).load(headUrl).apply(options).into(ivHeadIcon);
-        } else {
-            Glide.with(Objects.requireNonNull(getActivity())).load(R.drawable.not_logged_head_icon).into(ivHeadIcon);
-        }
+        Glide.with(Objects.requireNonNull(getActivity())).load(headUrl).into(ivHeadIcon);
     }
 
     @Override

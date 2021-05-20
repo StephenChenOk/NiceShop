@@ -3,7 +3,6 @@
     <!--userInfo_sp_file-->
     <string name="userInfo_sp_name">userInfo</string>
     <string name="objectId_sp_key">id</string>
-    <string name="headUrl_sp_key">headUrl</string>
     <string name="userName_sp_key">userName</string>
     <string name="account_sp_key">account</string>
     <string name="password_sp_key">password</string>
@@ -79,5 +78,6 @@
     <string name="shareTo">分享到...</string>
     <string name="score">请进行评分</string>
     <string name="title">title</string>
+    <string name="photo_name">photo_name.jpg</string>
 
 </resources>

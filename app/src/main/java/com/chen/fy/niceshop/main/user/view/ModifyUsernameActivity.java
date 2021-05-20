@@ -12,20 +12,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.chen.fy.niceshop.R;
+import com.chen.fy.niceshop.main.dynamic.BasePersonResponse;
+import com.chen.fy.niceshop.network.PersonService;
 import com.chen.fy.niceshop.network.ServiceCreator;
-import com.chen.fy.niceshop.network.UserService;
 import com.chen.fy.niceshop.utils.RUtil;
 import com.chen.fy.niceshop.utils.ShowUtils;
 import com.chen.fy.niceshop.utils.UserSP;
-import com.google.gson.Gson;
 
-import java.util.HashMap;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ModifyUsernameActivity extends AppCompatActivity implements View.OnClickListener {
@@ -90,41 +87,41 @@ public class ModifyUsernameActivity extends AppCompatActivity implements View.On
         }
     }
 
-    private void updateServerData(String userName) {
-        int id = UserSP.getUserID();
-        String phoneNumber = UserSP.getPhoneNumber();
-        // json
-        HashMap<String, Object> map = new HashMap<>();
-        map.put(RUtil.toString(R.string.objectId_sp_key), id);
-        map.put(RUtil.toString(R.string.userName_sp_key), userName);
-        map.put(RUtil.toString(R.string.phoneNumber_sp_key), phoneNumber);
-        final Gson gson = new Gson();
-        String postData = gson.toJson(map);
+    private void updateServerData(String nickname) {
 
-        // body
-        RequestBody requestBody = RequestBody.create(
-                MediaType.parse("application/json; charset=utf-8"), postData);
+        String token = UserSP.getToken();
 
         // request
-        UserService service = ServiceCreator.create(UserService.class);
-        service.update(requestBody).enqueue(new retrofit2.Callback<ResponseBody>() {
+        PersonService service = ServiceCreator.create(PersonService.class);
+        service.changeNickname(token, nickname).enqueue(new Callback<BasePersonResponse>() {
             @Override
-            public void onResponse(@NonNull Call<ResponseBody> call
-                    , @NonNull Response<ResponseBody> response) {
-                if (response.body() != null) {
-                    SharedPreferences.Editor editor = UserSP.getUserSP().edit();
-                    editor.putString(RUtil.toString(R.string.userName_sp_key), userName);
-                    editor.apply();
-                    finish();
+            public void onResponse(@NonNull Call<BasePersonResponse> call
+                    , @NonNull Response<BasePersonResponse> response) {
+                BasePersonResponse base = response.body();
+                if (base != null) {
+                    int code = base.getCode();
+                    if (code == RUtil.toInt(R.integer.server_success)) {
+                        resetNickname(base.getNickname());
+                    }
+                    Toast.makeText(ModifyUsernameActivity.this, base.getMsg(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.i(TAG, "update response body is null");
+                    Toast.makeText(ModifyUsernameActivity.this, "更换昵称失败", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Log.e(TAG, "update failure");
+            public void onFailure(@NonNull Call<BasePersonResponse> call, @NonNull Throwable t) {
+                t.printStackTrace();
             }
         });
+    }
+
+    private void resetNickname(String nickname) {
+        String newNickname = nickname.replace("\"", "");
+
+        SharedPreferences.Editor editor = UserSP.getUserSP().edit();
+        editor.putString(RUtil.toString(R.string.nickname), newNickname);
+        editor.apply();
+        finish();
     }
 }

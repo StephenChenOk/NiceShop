@@ -24,7 +24,7 @@ public class BaseCategoryResponse {
 
     @Override
     public String toString() {
-        return "BaseCategoryResponse{" +
+        return "BaseGuideResponse{" +
                 "statusCode=" + statusCode +
                 ", category=" + category +
                 '}';

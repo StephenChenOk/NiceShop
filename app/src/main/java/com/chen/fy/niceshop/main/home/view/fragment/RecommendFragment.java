@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.chen.fy.niceshop.utils.RUtil;
 import com.chen.fy.niceshop.utils.ShowUtils;
 import com.chen.fy.niceshop.main.home.view.activity.HotTodayActivity;
 import com.chen.fy.niceshop.main.home.view.activity.RankingListActivity;
+import com.chen.fy.niceshop.utils.UserSP;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -134,7 +136,7 @@ public class RecommendFragment extends Fragment implements ViewPager.OnPageChang
      * 设置点击事件
      */
     private void setClickListener() {
-        /// 今日爆款
+        /// 今日推荐
         mView.findViewById(R.id.ll_hot_goods_box).setOnClickListener(v -> {
             HotTodayActivity.start(getContext());
         });
@@ -216,6 +218,7 @@ public class RecommendFragment extends Fragment implements ViewPager.OnPageChang
             public void onFailure(@NonNull Call<BaseCommodityResponse> call
                     , @NonNull Throwable t) {
                 Log.i("GetAllShareInfo", "GetAllShareInfo Failure");
+                t.printStackTrace();
             }
         });
     }
@@ -253,11 +256,11 @@ public class RecommendFragment extends Fragment implements ViewPager.OnPageChang
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        if( state == ViewPager.SCROLL_STATE_DRAGGING){   //拖拽状态
-        }else if(state == ViewPager.SCROLL_STATE_SETTLING){  //滑动状态
-        }else if(state== ViewPager.SCROLL_STATE_IDLE){   //静止状态
+        if (state == ViewPager.SCROLL_STATE_DRAGGING) {   //拖拽状态
+        } else if (state == ViewPager.SCROLL_STATE_SETTLING) {  //滑动状态
+        } else if (state == ViewPager.SCROLL_STATE_IDLE) {   //静止状态
             mHandler.removeCallbacksAndMessages(null);   //清除消息
-            mHandler.sendEmptyMessageDelayed(0,3000);
+            mHandler.sendEmptyMessageDelayed(0, 3000);
         }
     }
 }

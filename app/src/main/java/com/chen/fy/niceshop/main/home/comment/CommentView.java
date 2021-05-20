@@ -2,10 +2,12 @@ package com.chen.fy.niceshop.main.home.comment;
 
 import android.content.Context;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.chen.fy.niceshop.R;
+import com.chen.fy.niceshop.XWApplication;
 import com.lxj.xpopup.core.BottomPopupView;
 
 /**
@@ -39,8 +41,12 @@ public class CommentView extends BottomPopupView {
         super.onShow();
         findViewById(R.id.btn_publish_comment).setOnClickListener(v -> {
             String content = getContent();
-            listener.clickComment(content);
-            dismiss();
+            if (!content.isEmpty()) {
+                listener.clickComment(content);
+                dismiss();
+            }else{
+                Toast.makeText(XWApplication.getContext(), "请正确输入", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -54,11 +60,12 @@ public class CommentView extends BottomPopupView {
         return et.getText().toString();
     }
 
-    public interface ICommentClickListener{
+    public interface ICommentClickListener {
         /**
          * 评论/回复
+         *
          * @param content 内容
          */
-        void clickComment( String content);
+        void clickComment(String content);
     }
 }

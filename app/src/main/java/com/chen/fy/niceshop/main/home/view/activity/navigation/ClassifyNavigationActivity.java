@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,10 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chen.fy.niceshop.R;
 import com.chen.fy.niceshop.main.classify.data.ClassifyAdapter;
+import com.chen.fy.niceshop.main.goodprice.data.model.BaseCategoryResponse;
 import com.chen.fy.niceshop.main.goodprice.data.model.Category;
+import com.chen.fy.niceshop.network.CategoryService;
+import com.chen.fy.niceshop.network.ServiceCreator;
+import com.chen.fy.niceshop.utils.RUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ClassifyNavigationActivity extends AppCompatActivity {
 
@@ -59,16 +68,24 @@ public class ClassifyNavigationActivity extends AppCompatActivity {
     private void fillData() {
         mList = new ArrayList<>();
 
-        mList.add(new Category(1, "电脑", R.drawable.computer));
-        mList.add(new Category(2, "手机", R.drawable.phone));
-        mList.add(new Category(3, "包包", R.drawable.bao));
-        mList.add(new Category(4, "潮鞋", R.drawable.xie));
-        mList.add(new Category(5, "衣服", R.drawable.yifu));
-        mList.add(new Category(6, "运动", R.drawable.yundong));
-        mList.add(new Category(7, "美食", R.drawable.meishi));
-        mList.add(new Category(8, "家具", R.drawable.jiaju));
+        CategoryService service = ServiceCreator.create(CategoryService.class);
+        service.getCategoryInfo().enqueue(new Callback<BaseCategoryResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BaseCategoryResponse> call
+                    , @NonNull Response<BaseCategoryResponse> response) {
+                BaseCategoryResponse base = response.body();
+                if (base != null && base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
+                    mList = base.getCategory();
+                    mAdapter.setDataList(mList);
+                    recyclerView.setAdapter(mAdapter);
+                }
+            }
 
-        mAdapter.setDataList(mList);
-        recyclerView.setAdapter(mAdapter);
+            @Override
+            public void onFailure(@NonNull Call<BaseCategoryResponse> call
+                    , @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

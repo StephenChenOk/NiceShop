@@ -4,28 +4,44 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chen.fy.niceshop.R;
+import com.chen.fy.niceshop.main.dynamic.BasePersonResponse;
 import com.chen.fy.niceshop.main.user.MineFragment;
+import com.chen.fy.niceshop.main.user.data.model.BaseUserResponse;
+import com.chen.fy.niceshop.network.PersonService;
+import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
 import com.chen.fy.niceshop.utils.ShowUtils;
 import com.chen.fy.niceshop.utils.UserSP;
 import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.core.BasePopupView;
 
 import org.devio.takephoto.app.TakePhoto;
 import org.devio.takephoto.app.TakePhotoActivity;
 import org.devio.takephoto.model.TResult;
 
 import java.io.File;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.internal.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MyInfoActivity extends TakePhotoActivity implements View.OnClickListener {
@@ -34,8 +50,6 @@ public class MyInfoActivity extends TakePhotoActivity implements View.OnClickLis
 
     private ImageView ivHeadIcon;
     private TextView tvUsername;
-    private TextView tvAccount;
-    private TextView tvPhoneNumber;
 
     private TakePhoto mTakePhoto;
     private Uri mUri;
@@ -61,26 +75,19 @@ public class MyInfoActivity extends TakePhotoActivity implements View.OnClickLis
         super.onResume();
 
         tvUsername.setText(UserSP.getUserName());
-        tvPhoneNumber.setText(UserSP.getPhoneNumber());
     }
 
     private void initView() {
         ImageView ivReturn = findViewById(R.id.iv_return_my_info);
         LinearLayout headIconBox = findViewById(R.id.ll_head_icon_box_my_info);
         LinearLayout usernameBox = findViewById(R.id.ll_username_box_my_info);
-        LinearLayout accountBox = findViewById(R.id.ll_account_box_my_info);
-        LinearLayout phoneBox = findViewById(R.id.ll_phone_box_my_info);
         Button btnOutLogin = findViewById(R.id.btn_out_login_my_info);
         ivHeadIcon = findViewById(R.id.iv_head_icon_my_info);
         tvUsername = findViewById(R.id.tv_username_my_info);
-        tvAccount = findViewById(R.id.tv_account_my_info);
-        tvPhoneNumber = findViewById(R.id.tv_phone_number_my_info);
 
         ivReturn.setOnClickListener(this);
         headIconBox.setOnClickListener(this);
         usernameBox.setOnClickListener(this);
-        accountBox.setOnClickListener(this);
-        phoneBox.setOnClickListener(this);
         btnOutLogin.setOnClickListener(this);
     }
 
@@ -136,13 +143,6 @@ public class MyInfoActivity extends TakePhotoActivity implements View.OnClickLis
                 Intent nameIntent = new Intent(this, ModifyUsernameActivity.class);
                 startActivity(nameIntent);
                 break;
-            case R.id.ll_account_box_my_info:
-
-                break;
-            case R.id.ll_phone_box_my_info:
-                Intent phoneNumIntent = new Intent(this, ModifyPhoneNumberActivity.class);
-                startActivity(phoneNumIntent);
-                break;
             case R.id.btn_out_login_my_info:   // 退出登录
                 clearLoginState();
                 setResult(MineFragment.RESULT_OUT_LOGIN);
@@ -180,46 +180,58 @@ public class MyInfoActivity extends TakePhotoActivity implements View.OnClickLis
     @Override
     public void takeSuccess(TResult result) {
         super.takeSuccess(result);
-
-//        postHeadIcon(result.getImage().getOriginalPath());
+        String imgPath = result.getImage().getOriginalPath();
+        // 更新头像
+        updateHeadIcon(imgPath);
     }
 
-    /**
-     * 修改头像
-     */
-//    private void postHeadIcon(String path) {
-//        BasePopupView loading = new XPopup.Builder(this).asLoading("更新中").show();
-//        int id = UserSP.getUserID();
-//        CommodityService service = ServiceCreator.create(CommodityService.class);
-//        RequestBody userID = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id));
-//        RequestBody file = RequestBody.create(MediaType.parse("image/jpg"), new File(path));
-//        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file"
-//                , "head_icon.jpg", file);
-//        service.postHeadIcon(userID, filePart).enqueue(new Callback<HeadIconResponse>() {
-//            @Override
-//            public void onResponse(@NonNull Call<HeadIconResponse> call
-//                    , @NonNull Response<HeadIconResponse> response) {
-//                loading.dismiss();
-//                HeadIconResponse response1 = response.body();
-//                if (response1 != null) {
-//                    isChange = true;
-//
-//                    String msg = response1.getMsg();
-//                    String newHeadUrl = response1.getNewHeadUrl();
-//                    SharedPreferences.Editor editor = getSharedPreferences(
-//                            RUtil.toString(R.string.userInfo_sp_name), MODE_PRIVATE).edit();
-//                    editor.putString(RUtil.toString(R.string.headUrl_sp_key), "http://" + newHeadUrl);
-//                    editor.apply();
-//
-//                    Glide.with(MyInfoActivity.this).load(path).into(ivHeadIcon);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<HeadIconResponse> call, @NonNull Throwable t) {
-//                loading.dismiss();
-//                Log.i(TAG, "postHeadIcon Failure");
-//            }
-//        });
-//    }
+    private void updateHeadIcon(String imgPath) {
+        /// 上传
+        final BasePopupView loading = new XPopup.Builder(this)
+                .asLoading("上传中...")
+                .show();
+        loading.setOnTouchListener((v, event) -> true);
+
+        String token = UserSP.getToken();
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpg"), new File(imgPath));
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData("img"
+                , RUtil.toString(R.string.photo_name), fileBody);
+
+        PersonService service = ServiceCreator.create(PersonService.class);
+        service.changeImg(token, filePart).enqueue(new Callback<BasePersonResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BasePersonResponse> call
+                    , @NonNull Response<BasePersonResponse> response) {
+                BasePersonResponse base = response.body();
+                if (base != null) {
+                    int code = base.getCode();
+                    if (code == RUtil.toInt(R.integer.server_success)) {
+                        resetHeadIcon(base.getImg());
+                    }
+                    Toast.makeText(MyInfoActivity.this,base.getMsg(),Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MyInfoActivity.this,"更换头像失败",Toast.LENGTH_SHORT).show();
+                }
+                // 上传成功
+                loading.dismiss();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BasePersonResponse> call, @NonNull Throwable t) {
+                loading.dismiss();
+                t.printStackTrace();
+            }
+        });
+    }
+
+    /// 重置头像
+    private void resetHeadIcon(String imgPath) {
+        // 加载新头像
+        Glide.with(MyInfoActivity.this).load(imgPath).into(ivHeadIcon);
+        // 保存头像
+        SharedPreferences.Editor editor = getSharedPreferences(
+                RUtil.toString(R.string.userInfo_sp_name), MODE_PRIVATE).edit();
+        editor.putString(RUtil.toString(R.string.head_icon), imgPath);
+        editor.apply();
+    }
 }

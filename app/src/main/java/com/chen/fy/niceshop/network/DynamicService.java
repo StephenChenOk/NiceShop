@@ -55,4 +55,6 @@ public interface DynamicService {
     ///  用户相关动态
     @GET("Dynamics/related")
     Call<BaseDynamicResponse> related(@Query("id") int id);
+
+
 }

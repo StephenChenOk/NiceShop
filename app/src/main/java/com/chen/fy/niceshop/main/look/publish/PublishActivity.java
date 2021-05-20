@@ -62,8 +62,6 @@ public class PublishActivity extends TakePhotoActivity {
     private TakePhoto mTakePhoto;
     private Uri mUri;
 
-    private boolean isPublish = false;
-
     public static void start(Context context) {
         Intent intent = new Intent(context, PublishActivity.class);
         context.startActivity(intent);
@@ -110,17 +108,15 @@ public class PublishActivity extends TakePhotoActivity {
     }
 
     private void doPublish() {
-        if (!isPublish) {
-            showLoading();
-            // content
-            String content = etContent.getText().toString();
-            // type
-            RadioButton btn = findViewById(radioGroup.getCheckedRadioButtonId());
-            String type = btn.getText().toString();
-            postHeadline(content, type);
-            isPublish = true;
+        // content
+        String content = etContent.getText().toString();
+        // type
+        RadioButton btn = findViewById(radioGroup.getCheckedRadioButtonId());
+        String type = btn.getText().toString();
+        if (content.isEmpty() || type.isEmpty()) {
+            Toast.makeText(this, "请正确输入", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "请勿重复点击", Toast.LENGTH_SHORT).show();
+            postHeadline(content, type);
         }
     }
 
@@ -132,7 +128,6 @@ public class PublishActivity extends TakePhotoActivity {
 
     /// 发表动态
     private void postHeadline(String content, String type) {
-        DynamicService service = ServiceCreator.create(DynamicService.class);
         // Authorization
         String token = UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
 
@@ -146,15 +141,19 @@ public class PublishActivity extends TakePhotoActivity {
         int size = mPictures.size();
         switch (size) {
             case 1:
+                showLoading();
                 postOne(token, contentBody, typeBody);
                 break;
             case 2:
+                showLoading();
                 postTwo(token, contentBody, typeBody);
                 break;
             case 3:
+                showLoading();
                 postThree(token, contentBody, typeBody);
                 break;
             default:
+                Toast.makeText(this, "请选择图片", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

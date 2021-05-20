@@ -86,7 +86,7 @@ public class NavigationListActivity extends AppCompatActivity {
         BasePopupView loading = new XPopup.Builder(this).asLoading("搜索中").show();
         // server
         CommodityService service = ServiceCreator.create(CommodityService.class);
-        service.search(title).enqueue(new Callback<BaseCommodityResponse>() {
+        service.categoryCommodity(title).enqueue(new Callback<BaseCommodityResponse>() {
             @Override
             public void onResponse(@NonNull Call<BaseCommodityResponse> call
                     , @NonNull Response<BaseCommodityResponse> response) {

@@ -31,6 +31,11 @@ public class UserSP {
     }
 
     /// 得到当前账号的id
+    public static String getToken() {
+        return UserSP.getUserSP().getString(RUtil.toString(R.string.token), "");
+    }
+
+    /// 得到当前账号的id
     public static String getPhoneNumber() {
         return UserSP.getUserSP().getString(RUtil.toString(R.string.phoneNumber_sp_key)
                 , RUtil.toString(R.string.default_phoneNumber));

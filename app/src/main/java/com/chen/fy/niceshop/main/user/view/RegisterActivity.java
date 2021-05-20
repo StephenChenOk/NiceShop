@@ -1,5 +1,6 @@
 package com.chen.fy.niceshop.main.user.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -16,7 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chen.fy.niceshop.R;
+import com.chen.fy.niceshop.main.guide.GuideActivity;
 import com.chen.fy.niceshop.main.user.data.model.BaseAccountResponse;
+import com.chen.fy.niceshop.main.user.data.model.UserInfo;
 import com.chen.fy.niceshop.network.AccountService;
 import com.chen.fy.niceshop.network.ServiceCreator;
 import com.chen.fy.niceshop.utils.RUtil;
@@ -126,20 +129,43 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onResponse(@NonNull Call<BaseAccountResponse> call
                     , @NonNull Response<BaseAccountResponse> response) {
-                if (response.body() != null) {
-                    loadingPopup.dismiss();
-                    Toast.makeText(RegisterActivity.this
-                            , RUtil.toString(R.string.register_success), Toast.LENGTH_SHORT).show();
-                    finish();
+                BaseAccountResponse base = response.body();
+                if (base != null) {
+                    if (base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
+                        parseResponse(base);
+                        GuideActivity.start(RegisterActivity.this, base.getJwt());
+                    } else {
+                        Toast.makeText(RegisterActivity.this, base.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Log.e(TAG, "response body is null");
                 }
+                loadingPopup.dismiss();
             }
 
             @Override
             public void onFailure(@NonNull Call<BaseAccountResponse> call, @NonNull Throwable t) {
-                Log.e(TAG, "register failure");
+                t.printStackTrace();
+                loadingPopup.dismiss();
             }
         });
+    }
+
+    private void parseResponse(BaseAccountResponse base) {
+        UserInfo userInfo = base.getUserInfo();
+        SharedPreferences.Editor editor = getSharedPreferences(
+                RUtil.toString(R.string.userInfo_sp_name), MODE_PRIVATE).edit();
+        // 存储token
+        editor.putString(RUtil.toString(R.string.token), base.getJwt());
+        // 存储用户名
+        editor.putString(RUtil.toString(R.string.nickname), userInfo.getNickname());
+        // 存储头像
+        editor.putString(RUtil.toString(R.string.head_icon), userInfo.getImg());
+
+        editor.apply();
+        Toast.makeText(this, RUtil.toString(R.string.register_success), Toast.LENGTH_SHORT).show();
+        setResult(RESULT_OK);
+        finish();
+
     }
 }

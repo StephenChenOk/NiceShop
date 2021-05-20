@@ -51,12 +51,9 @@ public class ClassifyAdapter extends RecyclerView.Adapter<ClassifyAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Category category = mList.get(position);
 
-        String[] path_base = category.getImg().split("\\\\");
+        String path_base = category.getImg();
 
-        String path = "http://39.106.225.65" +
-                path_base[0] +
-                "/" +
-                path_base[2];
+        String path = "http://39.106.225.65" + path_base;
         Glide.with(mContext).load(path).into(holder.ivImage);
         holder.tvName.setText(category.getName());
 

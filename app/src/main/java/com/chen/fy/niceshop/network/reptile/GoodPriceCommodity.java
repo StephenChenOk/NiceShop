@@ -114,4 +114,16 @@ public class GoodPriceCommodity implements Parcelable {
     public void setPlatform(String platform) {
         this.platform = platform;
     }
+
+    @Override
+    public String toString() {
+        return "GoodPriceCommodity{" +
+                "title='" + title + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", price='" + price + '\'' +
+                ", content='" + content + '\'' +
+                ", url='" + url + '\'' +
+                ", platform='" + platform + '\'' +
+                '}';
+    }
 }

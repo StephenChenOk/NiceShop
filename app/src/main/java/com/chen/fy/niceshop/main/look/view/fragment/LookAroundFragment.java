@@ -74,7 +74,6 @@ public class LookAroundFragment extends Fragment implements ViewPager.OnPageChan
 
     /**
      * Fragment在show与hide状态转换时调用此方法
-     *
      * @param hidden 是否是hide状态
      */
     @Override
@@ -82,8 +81,6 @@ public class LookAroundFragment extends Fragment implements ViewPager.OnPageChan
         super.onHiddenChanged(hidden);
         if (!hidden && getActivity() != null) {
             ShowUtils.changeStatusBarTextImgColor(getActivity(), true);
-
-            configViewPager();
         }
     }
 

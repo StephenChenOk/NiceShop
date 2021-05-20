@@ -368,7 +368,7 @@ public class GoodPriceFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<BaseCategoryResponse> call
                     , @NonNull Throwable t) {
-                Log.i("getCategoryInfo", "getCategoryInfo Failure");
+                t.printStackTrace();
             }
         });
     }
@@ -604,7 +604,7 @@ public class GoodPriceFragment extends Fragment {
         List<Commodity> commodities = new ArrayList<>();
         // server
         for (Commodity commodity : RecommendFragment.allCommodityList) {
-            int price = commodity.getView_price();
+            double price = commodity.getView_price();
             if (price >= lowest && price <= highest) {
                 commodities.add(commodity);
             }
