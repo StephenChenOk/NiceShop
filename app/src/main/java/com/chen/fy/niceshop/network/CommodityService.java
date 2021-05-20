@@ -28,7 +28,7 @@ public interface CommodityService {
 
     ///  今日爆款数据
     @GET("Commodities/hotCommodity")
-    Call<BaseRecommendResponse> g();
+    Call<BaseCommodityResponse> hotCommodity();
 
     ///  超值榜单数据
     @GET("Commodities/rank")

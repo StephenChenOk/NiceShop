@@ -110,25 +110,25 @@ public class HotTodayActivity extends AppCompatActivity {
 
     /// 未登录
     private void doPostNotSign(){
-//        CommodityService service = ServiceCreator.create(CommodityService.class);
-//        service.recommendItems().enqueue(new Callback<BaseCommodityResponse>() {
-//            @Override
-//            public void onResponse(@NonNull Call<BaseCommodityResponse> call
-//                    , @NonNull Response<BaseCommodityResponse> response) {
-//                BaseCommodityResponse base = response.body();
-//                if (base != null && base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
-//                    mList = base.getCommodity();
-//                    mAdapter.setData(mList);
-//                    recyclerView.setAdapter(mAdapter);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<BaseCommodityResponse> call
-//                    , @NonNull Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
+        CommodityService service = ServiceCreator.create(CommodityService.class);
+        service.hotCommodity().enqueue(new Callback<BaseCommodityResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BaseCommodityResponse> call
+                    , @NonNull Response<BaseCommodityResponse> response) {
+                BaseCommodityResponse base = response.body();
+                if (base != null && base.getStatusCode() == RUtil.toInt(R.integer.server_success)) {
+                    mList = base.getCommodity();
+                    mAdapter.setData(mList);
+                    recyclerView.setAdapter(mAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BaseCommodityResponse> call
+                    , @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
 }
